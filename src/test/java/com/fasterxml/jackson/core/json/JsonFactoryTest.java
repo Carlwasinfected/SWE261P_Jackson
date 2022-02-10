@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.type.ResolvedType;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+
 public class JsonFactoryTest
     extends com.fasterxml.jackson.core.BaseTest
 {
