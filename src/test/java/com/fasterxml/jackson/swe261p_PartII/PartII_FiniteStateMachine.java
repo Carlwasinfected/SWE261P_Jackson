@@ -1,10 +1,9 @@
-package com.fasterxml.jackson.swe261p;
+package com.fasterxml.jackson.swe261p_PartII;
 
 import com.fasterxml.jackson.core.BaseTest;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.io.StringReader;
