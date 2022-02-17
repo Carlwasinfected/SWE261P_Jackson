@@ -1,15 +1,41 @@
 package com.fasterxml.jackson.core.json;
 
-import com.fasterxml.jackson.core.BaseTest;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.io.ContentReference;
+
+import java.io.StringWriter;
 
 /**
  * Unit tests for class {@link JsonReadContext}.
  */
 public class JsonReadContextTest extends BaseTest
 {
+    public void testSetAndGetCurrentValue() throws Exception
+    {
+        JsonReadContext jsonReadContext = JsonReadContext.createRootContext(0, 0, (DupDetector) null);
+        jsonReadContext.setCurrentValue("abc");
+        assertEquals("abc", jsonReadContext.getCurrentValue());
+        jsonReadContext.setCurrentValue(null);
+        assertNull(jsonReadContext.getCurrentValue());
+    }
+    public void testWithAndGetDupDetector() throws Exception
+    {
+        JsonFactory JSON_F = new JsonFactory();
+        JsonReadContext jsonReadContext = JsonReadContext.createRootContext(0, 0, (DupDetector) null);
+        JsonGenerator g = JSON_F.createGenerator(new StringWriter());
+        g.writeNumber(100);
+        g.close();
+        DupDetector dupDetector = DupDetector.rootDetector(g);
+        jsonReadContext.withDupDetector(dupDetector);
+        assertEquals(jsonReadContext.getDupDetector(),dupDetector);
+    }
+
+    public void testGetStartLocation()
+    {
+        JsonReadContext jsonReadContext = JsonReadContext.createRootContext(0, 0, (DupDetector) null);
+        assertEquals(jsonReadContext.getStartLocation("TestUnicode.java").getClass(), JsonLocation.class);
+    }
+
   public void testSetCurrentNameTwiceWithSameNameRaisesJsonParseException() throws Exception
   {
       DupDetector dupDetector = DupDetector.rootDetector((JsonGenerator) null);
