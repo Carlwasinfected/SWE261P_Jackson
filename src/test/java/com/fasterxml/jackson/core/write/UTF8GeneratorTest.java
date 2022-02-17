@@ -11,12 +11,10 @@ import com.fasterxml.jackson.core.util.BufferRecycler;
 
 import java.io.ByteArrayOutputStream;
 
-public class UTF8GeneratorTest extends BaseTest
-{
+public class UTF8GeneratorTest extends BaseTest {
     private final JsonFactory JSON_F = new JsonFactory();
 
-    public void testUtf8Issue462() throws Exception
-    {
+    public void testUtf8Issue462() throws Exception {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         IOContext ioc = new IOContext(new BufferRecycler(),
                 ContentReference.rawReference(bytes), true);
@@ -30,7 +28,7 @@ public class UTF8GeneratorTest extends BaseTest
         gen.writeString(str);
         gen.flush();
         gen.close();
-        
+
         // Also verify it's parsable?
         JsonParser p = JSON_F.createParser(bytes.toByteArray());
         for (int i = 1; i <= length; ++i) {
@@ -44,8 +42,7 @@ public class UTF8GeneratorTest extends BaseTest
     }
 
     // for [core#115]
-    public void testSurrogatesWithRaw() throws Exception
-    {
+    public void testSurrogatesWithRaw() throws Exception {
         final String VALUE = quote("\ud83d\ude0c");
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         JsonGenerator g = JSON_F.createGenerator(out);
@@ -67,8 +64,7 @@ public class UTF8GeneratorTest extends BaseTest
         jp.close();
     }
 
-    public void testFilteringWithEscapedChars() throws Exception
-    {
+    public void testFilteringWithEscapedChars() throws Exception {
         final String SAMPLE_WITH_QUOTES = "\b\t\f\n\r\"foo\"\u0000";
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();

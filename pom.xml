@@ -63,7 +63,7 @@
   <scm>
     <connection>scm:git:git@github.com:FasterXML/jackson-core.git</connection>
     <developerConnection>scm:git:git@github.com:FasterXML/jackson-core.git</developerConnection>
-    <url>http://github.com/FasterXML/jackson-core</url>    
+    <url>http://github.com/FasterXML/jackson-core</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -71,14 +71,14 @@
     <!-- 04-Mar-2019, tatu: Retain Java6/JDK1.6 compatibility for annotations for Jackson 2.x,
              but use Moditect to get JDK9+ module info support; need newer bundle plugin as well
       -->
-    <javac.src.version>1.6</javac.src.version>
-    <javac.target.version>1.6</javac.target.version>
+    <javac.src.version>1.8</javac.src.version>
+    <javac.target.version>1.8</javac.target.version>
 
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
 
     <osgi.export>com.fasterxml.jackson.core;version=${project.version},
-com.fasterxml.jackson.core.*;version=${project.version}
+      com.fasterxml.jackson.core.*;version=${project.version}
     </osgi.export>
 
     <!-- Generate PackageVersion.java into this directory. -->
@@ -104,9 +104,9 @@ com.fasterxml.jackson.core.*;version=${project.version}
       <!-- 26-Aug-2019, tatu: JaCoCo for code coverage -->
       <plugin>
 
-	<groupId>org.jacoco</groupId>
-	<artifactId>jacoco-maven-plugin</artifactId>
-	<executions>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
           <execution>
             <goals>
               <goal>prepare-agent</goal>
@@ -125,10 +125,10 @@ com.fasterxml.jackson.core.*;version=${project.version}
       <!-- Important: enable enforcer plug-in: -->
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
-	<executions> <!-- or?  combine.children="merge"> -->
+        <executions> <!-- or?  combine.children="merge"> -->
           <execution>
             <id>enforce-properties</id>
-	        <phase>validate</phase>
+            <phase>validate</phase>
             <goals><goal>enforce</goal></goals>
           </execution>
         </executions>
@@ -148,11 +148,11 @@ com.fasterxml.jackson.core.*;version=${project.version}
           <excludes>
             <exclude>**/failing/**/*.java</exclude>
           </excludes>
-<!-- 13-Apr-2018, tatu: for debugging [core#400]
-          <systemPropertyVariables>
-<com.fasterxml.jackson.core.util.BufferRecyclers.trackReusableBuffers>true</com.fasterxml.jackson.core.util.BufferRecyclers.trackReusableBuffers>
-          </systemPropertyVariables>
--->
+          <!-- 13-Apr-2018, tatu: for debugging [core#400]
+                    <systemPropertyVariables>
+          <com.fasterxml.jackson.core.util.BufferRecyclers.trackReusableBuffers>true</com.fasterxml.jackson.core.util.BufferRecyclers.trackReusableBuffers>
+                    </systemPropertyVariables>
+          -->
         </configuration>
       </plugin>
       <!-- settings are fine, but needed to trigger execution! -->
@@ -173,19 +173,19 @@ com.fasterxml.jackson.core.*;version=${project.version}
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
-      
+
       <plugin>
         <groupId>de.jjohannes</groupId>
         <artifactId>gradle-module-metadata-maven-plugin</artifactId>
       </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>7</source>
-                <target>7</target>
-            </configuration>
-        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>7</source>
+          <target>7</target>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId/>
         <dependencies>
