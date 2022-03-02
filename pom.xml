@@ -186,6 +186,7 @@
           <target>7</target>
         </configuration>
       </plugin>
+
       <plugin>
         <artifactId/>
         <dependencies>
@@ -206,6 +207,7 @@
 
         </dependencies>
       </plugin>
+
     </plugins>
   </build>
 
