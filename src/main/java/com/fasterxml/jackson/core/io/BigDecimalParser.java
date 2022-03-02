@@ -27,6 +27,8 @@ public final class BigDecimalParser
         this.chars = chars;
     }
 
+    public BigDecimalParser() { this.chars = null; }
+
     public static BigDecimal parse(String valueStr) {
         return parse(valueStr.toCharArray());
     }
@@ -163,6 +165,23 @@ public final class BigDecimalParser
 
         return (int) adjScale;
     }
+
+    public class AdjustScale {
+        private int adjustScale(int scale, long exp) {
+            long adjScale = scale - exp;
+            if (adjScale > Integer.MAX_VALUE || adjScale < Integer.MIN_VALUE) {
+                throw new NumberFormatException(
+                        "Scale out of range: " + adjScale + " while adjusting scale " + scale + " to exponent " + exp);
+            }
+
+            return (int) adjScale;
+        }
+
+        public int _adjustScale(int scale, long exp) {
+            return this.adjustScale(scale, exp);
+        }
+    }
+
 
     private BigDecimal toBigDecimalRec(int off, int len, int scale, int splitLen) {
         if (len > splitLen) {
