@@ -96,6 +96,10 @@ public class WriterBasedJsonGenerator
         this(ctxt, features, codec, w, JsonFactory.DEFAULT_QUOTE_CHAR);
     }
 
+    public String getContext() {
+        return this._writer.toString();
+    }
+
     // @since 2.10
     public WriterBasedJsonGenerator(IOContext ctxt, int features,
             ObjectCodec codec, Writer w,

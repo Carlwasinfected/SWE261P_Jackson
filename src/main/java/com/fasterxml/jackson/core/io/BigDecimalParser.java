@@ -1,5 +1,7 @@
 package com.fasterxml.jackson.core.io;
 
+import org.mockito.MockitoAnnotations;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 

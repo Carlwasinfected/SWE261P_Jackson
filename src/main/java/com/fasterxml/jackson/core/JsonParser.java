@@ -51,6 +51,11 @@ public abstract class JsonParser
     protected final static JacksonFeatureSet<StreamReadCapability> DEFAULT_READ_CAPABILITIES
         = JacksonFeatureSet.fromDefaults(StreamReadCapability.values());
 
+
+    public class Type {
+
+    }
+
     /**
      * Enumeration that defines all on/off features for parsers.
      */
@@ -361,6 +366,7 @@ public abstract class JsonParser
         public boolean enabledIn(int flags) { return (flags & _mask) != 0; }
 
         public int getMask() { return _mask; }
+
     }
 
     /*
