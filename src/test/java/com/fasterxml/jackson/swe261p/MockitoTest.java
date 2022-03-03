@@ -11,35 +11,41 @@ import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 
+import java.io.DataInput;
+import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 public class MockitoTest {
 
     @Mock
-    StringWriter writer;
+    File file;
+    DataInput input;
+    JsonFactory mockFactory;
 
     @Before
     public void setup() {
-        writer = mock(StringWriter.class);
-        initMocks(this);
+        file = mock(File.class);
+        input = mock(DataInput.class);
+        mockFactory = mock(JsonFactory.class);
     }
 
     @Test
     public void mockitoTest() throws Exception {
-        assertNotNull(writer);
-        when(writer.toString()).thenReturn("1/2/3");
-        StringWriter w = new StringWriter();
-        WriterBasedJsonGenerator g = (WriterBasedJsonGenerator) new JsonFactory().createGenerator(w);
-        g.writeNumber(1);
-        g.writeNumber(2);
-        g.writeNumber(3);
-        g.close();
-        assertEquals(g.getContext(), w.toString());
+        assertNotNull(file);
+        mockFactory.createParser(file);
+        verify(mockFactory).createParser(file);
     }
 
+    @Test(expected = IOException.class)
+    public void mockitoExceptionTest() throws IOException {
+        assertNotNull(input);
+        JsonFactory realFactory = new JsonFactory();
+        when(realFactory.createParser(input)).thenThrow(new IOException());
+        realFactory.createParser(input);
+    }
 }

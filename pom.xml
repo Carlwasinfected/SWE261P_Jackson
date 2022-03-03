@@ -190,12 +190,7 @@
       <plugin>
         <artifactId/>
         <dependencies>
-          <dependency>
-            <groupId>org.junit</groupId>
-            <artifactId>junit-bom</artifactId>
-            <version>5.8.0-M1</version>
-            <scope>test</scope>
-          </dependency>
+
 
         </dependencies>
       </plugin>
