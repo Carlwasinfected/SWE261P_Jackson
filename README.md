@@ -1,6 +1,9 @@
-#SWE 261P
+# SWE 261P
+> Team Members: [Can Wang](mailto:canw7@uci.edu), Tianren Tan, Kaiqin Chen
 
 
+**The project we chose is *[Jackson](https://github.com/FasterXML/jackson-core/wiki)*.**
+**Please see our final report at *[here](https://github.com/Carlwasinfected/SWE261P_Jackson/blob/2.14/SWE261P_Final_Report.md)*.**
 
 
 ---
